@@ -154,7 +154,24 @@ Sleep(15);
 cout<<"\xB2";
 }
 
-	
+	int number_of_process;
+	cout<<"\n how many process you want to enter \n";
+	cin>>number_of_process;
+	Processes process[number_of_process];
+	for(int i=0;i<number_of_process;i++)
+	{
+		system("cls");
+		cout<<"\nEnter the process ID : ";
+		cin>>process[i].p_id;
+		cout<<"\nEnter the arrival time : ";
+		cin>>process[i].ar_time;
+		cout<<"\nEnter the burst time : ";
+		cin>>process[i].b_time;
+		process[i].priority=0;
+	}
+		
+	find_average_A_time(process,number_of_process);
+	return 0;
 	//cout<<sizeof(process)/sizeof(process[0]);
 //	for(int i=0;i<number_of_process;i++)
 //	{
