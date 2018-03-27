@@ -73,14 +73,7 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 	}
 } 
 
-void turn_around_time_of_process(Processes process[],int number_of_p,int waiting_time[],int turn_around_time[])
-{  /*For turn around  time*/ 
-	for(int a=0;a<number_of_p;a++)
-	{
-		turn_around_time[a]=process[a].b_time+waiting_time[a];
-		 
-	}
-}
+
 
 void find_average_A_time(Processes process[],int number_of_p)
 {
@@ -100,6 +93,14 @@ void find_average_A_time(Processes process[],int number_of_p)
 	}
 		cout << "\nAverage waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
     	cout << "\nAverage turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p;
+}
+void turn_around_time_of_process(Processes process[],int number_of_p,int waiting_time[],int turn_around_time[])
+{  /*For turn around  time*/ 
+	for(int a=0;a<number_of_p;a++)
+	{
+		turn_around_time[a]=process[a].b_time+waiting_time[a];
+		 
+	}
 }
 int main()
 {  
