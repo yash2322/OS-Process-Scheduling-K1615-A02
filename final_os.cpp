@@ -82,7 +82,25 @@ void turn_around_time_of_process(Processes process[],int number_of_p,int waiting
 	}
 }
 
-
+void find_average_A_time(Processes process[],int number_of_p)
+{
+	int waiting_time[number_of_p],turn_around_time[number_of_p];
+	int total_waiting_time=0,total_turn_around_time=0;      //int
+/* Average turn around time  */	
+	waiting_time_of_process(process,number_of_p,waiting_time);
+	turn_around_time_of_process(process,number_of_p,waiting_time,turn_around_time);
+	
+	cout << " | Processes |"<< " | Burst time | "<< " | Waiting time | "<< " | Turn around time | \n";
+	
+	for(int x=0;x<number_of_p;x++)
+	{
+		total_waiting_time=total_waiting_time+waiting_time[x];
+		total_turn_around_time=total_turn_around_time+turn_around_time[x];
+		cout << "  " << process[x].p_id << " \t\t"<< process[x].b_time << " \t\t " << waiting_time[x]<< " \t\t " << turn_around_time[x] << "\n";
+	}
+		cout << "\nAverage waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
+    	cout << "\nAverage turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p;
+}
 int main()
 {  
 	string numbers[15]={" FIRST "," SECOND "," THIRD "," FOURTH "," FIFTH "," SIXTH "," SEVENTH "," EIGHT "," NINTH "," TENTH "," ELEVENTH "," TWELTH "," THIRTEENTH "," FOURTEENTH "," FIFTEENTH "};
