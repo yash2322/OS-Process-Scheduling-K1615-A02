@@ -8,12 +8,6 @@ struct Processes                                     /*here i am decalaring a st
 	//int wait_time;
 	//int turn_r_time;
 };
-
-
-//struct readyQueue
-//{
-//	int id,btime;
-//}
 void waiting_time_of_process(Processes process[],int number_of_p,int waiting_time[])
 {
 	/*  This is a function to calculate the waiting time of process. this function is also used to arrange and choose the process	*/
@@ -109,7 +103,26 @@ void find_average_A_time(Processes process[],int number_of_p)
 }
 int main()
 {  
-	
+	string numbers[15]={" FIRST "," SECOND "," THIRD "," FOURTH "," FIFTH "," SIXTH "," SEVENTH "," EIGHT "," NINTH "," TENTH "," ELEVENTH "," TWELTH "," THIRTEENTH "," FOURTEENTH "," FIFTEENTH "};
+char d[100]=" OPERATING SYSTEM PROJECT K1615 A02";
+
+int i=0,j;                           /*just used this for better representation.*/
+
+for(j=0;j<68;j++)
+{
+Sleep(15);
+cout<<"\xB2";
+}
+for(j=0;j<36;j++)
+{
+Sleep(20);
+cout<<d[j];
+}
+for(j=0;j<68;j++)
+{
+Sleep(15);
+cout<<"\xB2";
+}
 
 	int number_of_process;
 	cout<<"\n How many process you want to enter \n";
