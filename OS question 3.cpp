@@ -200,7 +200,7 @@ cout<<"\xB2";
 //		cout<<process[i].ar_time;
 //		cout<<"\nEnter the burst time : ";
 //	cout<<process[i].b_time;
-//	}
+//	} 
 }
 
 
