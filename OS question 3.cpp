@@ -1,6 +1,8 @@
 #include<windows.h>
 #include <bits/stdc++.h>
 using namespace std;
+char d[100]=" OPERATING SYSTEM PROJECT K1615 A02";
+int i=0,j;
 struct Processes                                     /*here i am decalaring a structure to store the process info*/
 {                 
 	int p_id;
@@ -10,6 +12,19 @@ struct Processes                                     /*here i am decalaring a st
 };
 void waiting_time_of_process(Processes process[],int number_of_p,int waiting_time[])
 {
+	for(j=0;j<48;j++)
+				{
+				cout<<"*";
+				}
+				for(j=0;j<36;j++)
+				{
+				cout<<d[j];
+				}
+				for(j=0;j<48;j++)
+				{
+				cout<<"*";
+				}
+				cout<<"\n\n\n";
 	/*  This is a function to calculate the waiting time of process. this function is also used to arrange and choose the process	*/
 	int temp[number_of_p],value=0;       
  	int time=0,least_burst_time_p=0,executed=0,f_time,min_time_of_execution=5000;   /* i have set a boundary condition that a process
@@ -33,6 +48,9 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 			
 			if((process[x].ar_time<=time)&&(temp[x]<min_time_of_execution&&temp[x]>0))      /*This is used to select a process on the basis of atrrival time and least burst time*/
 			{
+				
+
+				cout<<"\n\n Process "<<process[x].p_id<<" is in ready state with burst time ="<<process[x].b_time;
 //				cout<<"in upper\n";
 //				cout<<process[x].ar_time<<endl;
 				min_time_of_execution=temp[x];
@@ -64,6 +82,11 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 			cout<<"\n process : "<<process[least_burst_time_p].p_id<<" executed "<<endl;
 			//			cout<<"\nexecuted\n";
 			executed++;
+			for(int i=0;i<40;i++)
+			{
+				cout<<"-";
+			}
+			cout<<"\n";
 			f_time=time+2;               /*calculating waiting time*/
 			time=time+2;                 /*finish time*/
 			waiting_time[least_burst_time_p]=f_time-process[least_burst_time_p].b_time-process[least_burst_time_p].ar_time;
@@ -90,25 +113,30 @@ void find_average_A_time(Processes process[],int number_of_p)
 	waiting_time_of_process(process,number_of_p,waiting_time);
 	turn_around_time_of_process(process,number_of_p,waiting_time,turn_around_time);
 	
-	cout << " | Processes |"<< " | Burst time | "<< " | Waiting time | "<< " | Turn around time | \n";
+	cout << " | Processes |"<< " | Burst time | "<< " | Waiting time | "<< " | Turn around time | "<< " | ARRIVAL TIME | \n";
 	
 	for(int x=0;x<number_of_p;x++)
 	{
 		total_waiting_time=total_waiting_time+waiting_time[x];
 		total_turn_around_time=total_turn_around_time+turn_around_time[x];
-		cout << "  " << process[x].p_id << " \t\t"<< process[x].b_time << " \t\t " << waiting_time[x]<< " \t\t " << turn_around_time[x] << "\n";
+		cout << "  " << process[x].p_id << " \t\t  "<< process[x].b_time << " \t\t   " << waiting_time[x]<< " \t\t   " << turn_around_time[x] << " \t\t\t   " <<process[x].ar_time << "\n";
 	}
-		cout << "\nAverage waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
-    	cout << "\nAverage turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p;
+		for(int i=0;i<40;i++)
+			{
+				cout<<"-";
+			}
+			cout<<"\n\n";
+		cout << "\n"<<"\xB2 "<<"Average waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
+    	cout<<"\n\n";
+		
+		cout << "\n"<<"\xB2 "<<"Average turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p<<endl;
 }
 int main()
 {  
 	string numbers[15]={" FIRST "," SECOND "," THIRD "," FOURTH "," FIFTH "," SIXTH "," SEVENTH "," EIGHT "," NINTH "," TENTH "," ELEVENTH "," TWELTH "," THIRTEENTH "," FOURTEENTH "," FIFTEENTH "};
-char d[100]=" OPERATING SYSTEM PROJECT K1615 A02";
 
-int i=0,j;                           /*just used this for better representation.*/
-
-for(j=0;j<68;j++)
+                  /*just used this for better representation.*/
+for(j=0;j<58;j++)
 {
 Sleep(15);
 cout<<"\xB2";
@@ -118,32 +146,47 @@ for(j=0;j<36;j++)
 Sleep(20);
 cout<<d[j];
 }
-for(j=0;j<68;j++)
+for(j=0;j<58;j++)
 {
 Sleep(15);
 cout<<"\xB2";
 }
 
 	int number_of_process;
-	cout<<"\n How many process you want to enter \n";
+	cout<<"\n"<<"\xB2\xB2"<<" How many process you want to enter : ";
 	cin>>number_of_process;
 	Processes process[number_of_process];
 	for(int i=0;i<number_of_process;i++)
 	{
+		
 		system("cls");
-		cout<<"\nEnter the process ID of -"<<numbers[i]<<" process : " ;
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+		for(j=0;j<36;j++)
+		{
+		cout<<d[j];
+		}
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+
+		cout<<"\n\n\n\n"<<"\xB2\xB2"<<" Enter the process ID of -"<<numbers[i]<<" process : " ;
 		cin>>process[i].p_id;
-		cout<<"\nEnter the arrival time : ";
+		cout<<"\n"<<"\xB2\xB2"<<" Enter the arrival time : ";
 		cin>>process[i].ar_time;
 		while(process[i].ar_time==0)                 /*if arrival time =0; DOn't select the process*/
 		{
-			cout<<"\nEntered process arrival time is wrong. Enter the correct arrival time ";
+			cout<<"\n"<<"\xB2\xB2"<<" Entered process arrival time is wrong. Enter the correct arrival time ";
 			cin>>process[i].ar_time;
 		}
-		cout<<"\nEnter the burst time : ";
+		cout<<"\n"<<"\xB2\xB2"<<" Enter the burst time : ";
 		cin>>process[i].b_time;
 		
 	}
+	system("cls");
 		
 	find_average_A_time(process,number_of_process);
 	return 0;

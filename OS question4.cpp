@@ -1,6 +1,10 @@
 #include<windows.h>
 #include <bits/stdc++.h>
 using namespace std;
+char d[100]=" OPERATING SYSTEM PROJECT K1615 A02";
+
+int i=0,j;
+
 struct Processes
 {
 	int p_id;
@@ -12,6 +16,19 @@ struct Processes
 void waiting_time_of_process(Processes process[],int number_of_p,int waiting_time[])
 {
 	//int priority_value[number_of_p];
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+		for(j=0;j<36;j++)
+		{
+		cout<<d[j];
+		}
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+		cout<<"\n\n\n";
 	for(int i=0;i<number_of_p;i++)
 	{
 		process[i].priority=-1.0;                   /*Setting the priority value to negative initially*/
@@ -32,7 +49,7 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 //	int complete = 0, t = 0, minm = INT_MAX;     
 //    int shortest = 0, finish_time;
 //    bool check = false;
-	
+	bool P_or_BT=false;
 	while(executed!=number_of_p)
 	{
 		
@@ -40,14 +57,19 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 		{
 			if(process[x].ar_time<=time&&process[x].priority!=0)
 			/*calculating the priority if it is not set to zero i.e If it is not yet executed*/
-			{                
+			{          
+			      
 				process[x].priority=1+((time-process[x].ar_time)/(float)process[x].b_time);
-				cout<<"\npriority of proceess "<<process[x].p_id<<" = "<<" 1 + (("<<time<<"-"<<process[x].ar_time<<")/running-time)"<< " ->"<<process[x].priority; 
+				cout<<"\n "<<"\xB2"<<" priority of proceess "<<process[x].p_id<<" = "<<" 1 + (("<<time<<"-"<<process[x].ar_time<<")/running-time)"<< " ->"<<process[x].priority<<endl; 
+			
+			
 			}
+			
+			
 			if(process[x].priority>=temp_for_priority&&process[x].priority>1.5)
 			{ /*If priority value has increased to more than 1.5 Than the process with the highest priority is executed*/
 				temp_for_priority=process[x].priority;
-				
+				P_or_BT=true;
 				min_time_of_execution=temp[x];
 			least_burst_time_OR_PRIORITY_P=x;
 				flag=true;
@@ -69,14 +91,24 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 			}
 			
 		}
-		cout<<"\ntemp="<<temp_for_priority;
-		if(flag==false)
+				if(flag==false)
 		{
 //			cout<<"in lower\n";
 			time++;
 //			cout<<"\n"<<time;
 			continue;
 		}
+		if(P_or_BT==false)
+		{
+			cout<<"\n\n "<<"\xB2 "<<"Process will be sorted on the basis of burst time because priorities are either equal or not very high \n";
+		}
+		else
+		{
+			cout<<"\n\n "<<"\xB2 "<<"Process will be sorted on the basis of Priority  \n";
+			P_or_BT=false;
+		}
+		cout<<"\n\n"<<" \xB2"<<" Selected Process priority ="<<temp_for_priority;
+
 //		cout<<"\nhere\n";
 		value=temp[least_burst_time_OR_PRIORITY_P];
 		time=time+value;
@@ -89,8 +121,14 @@ void waiting_time_of_process(Processes process[],int number_of_p,int waiting_tim
 		if(temp[least_burst_time_OR_PRIORITY_P]==0)
 		{
 			/*If process executed than calculate its waiting time*/
-			cout<<"\n process : "<<process[least_burst_time_OR_PRIORITY_P].p_id<<" executed "<<endl;
+			cout<<"\n\n\n "<<"\t\t\t"<<"\xB2\xB2\xB2 "<<"process : "<<process[least_burst_time_OR_PRIORITY_P].p_id<<" executed "<<"\xB2\xB2\xB2"<<endl;
 			//			cout<<"\nexecuted\n";
+			for(int i=0;i<40;i++)
+			{
+				cout<<"-";
+			}
+			cout<<"\n\n";
+			
 			executed++;
 			f_time=time;
 		             
@@ -120,16 +158,25 @@ void find_average_A_time(Processes process[],int number_of_p)
 	waiting_time_of_process(process,number_of_p,waiting_time);
 	turn_around_time_of_process(process,number_of_p,waiting_time,turn_around_time);
 	
-	cout << " | Processes |"<< " | Burst time | "<< " | Waiting time | "<< " | Turn around time | \n";
+		cout << " | Processes |"<< " | Burst time | "<< " | Waiting time | "<< " | Turn around time | "<< " | ARRIVAL TIME | \n";
+
 	
 	for(int x=0;x<number_of_p;x++)
 	{
 		total_waiting_time=total_waiting_time+waiting_time[x];
 		total_turn_around_time=total_turn_around_time+turn_around_time[x];
-		cout << "      " << process[x].p_id << "\t\t"<< process[x].b_time << " \t\t " << waiting_time[x]<< " \t\t " << turn_around_time[x] << "\n";
+		cout << "  " << process[x].p_id << " \t\t  "<< process[x].b_time << " \t\t   " << waiting_time[x]<< " \t\t   " << turn_around_time[x] << " \t\t\t   " <<process[x].ar_time << "\n";
 	}
-		cout << "\nAverage waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
-    	cout << "\nAverage turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p;
+		for(int i=0;i<40;i++)
+			{
+				cout<<"-";
+			}
+			cout<<"\n\n";
+		cout << "\n"<<"\xB2\xB2 "<<"Average waiting time of processes : "<< (float)total_waiting_time / (float)number_of_p;
+    	cout<<"\n\n";
+		
+		cout << "\n"<<"\xB2\xB2 "<<"Average turn around time of processes : "<< (float)total_turn_around_time / (float)number_of_p<<"\n\n";
+
 }
 int main()
 {
@@ -138,7 +185,7 @@ char d[100]=" OPERATING SYSTEM PROJECT K1615 A02";
 
 int i=0,j;
 
-for(j=0;j<68;j++)
+for(j=0;j<58;j++)
 {
 Sleep(15);
 cout<<"\xB2";
@@ -148,27 +195,42 @@ for(j=0;j<36;j++)
 Sleep(20);
 cout<<d[j];
 }
-for(j=0;j<68;j++)
+for(j=0;j<58;j++)
 {
 Sleep(15);
 cout<<"\xB2";
 }
 
 	int number_of_process;
-	cout<<"\n how many process you want to enter \n";
+	cout<<"\n"<<"\xB2\xB2"<<" How many process you want to enter : ";
 	cin>>number_of_process;
 	Processes process[number_of_process];
 	for(int i=0;i<number_of_process;i++)
 	{
 		system("cls");
-		cout<<"\nEnter the process ID of -"<<numbers[i]<<" process : " ;
+		
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+		for(j=0;j<36;j++)
+		{
+		cout<<d[j];
+		}
+		for(j=0;j<48;j++)
+		{
+		cout<<"*";
+		}
+
+		cout<<"\n\n\n\n"<<"\xB2\xB2"<<" Enter the process ID of -"<<numbers[i]<<" process : " ;
 		cin>>process[i].p_id;
-		cout<<"\nEnter the arrival time : ";
+		cout<<"\n"<<"\xB2\xB2"<<" Enter the arrival time : ";
 		cin>>process[i].ar_time;
-		cout<<"\nEnter the burst time : ";
+		cout<<"\n"<<"\xB2\xB2"<<" Enter the burst time : ";
 		cin>>process[i].b_time;
 		process[i].priority=0;
 	}
+	system("cls");
 		
 	find_average_A_time(process,number_of_process);
 	return 0;
